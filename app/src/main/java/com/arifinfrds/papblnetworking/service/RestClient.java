@@ -1,7 +1,5 @@
 package com.arifinfrds.papblnetworking.service;
 
-import com.arifinfrds.papblnetworking.model.Example;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

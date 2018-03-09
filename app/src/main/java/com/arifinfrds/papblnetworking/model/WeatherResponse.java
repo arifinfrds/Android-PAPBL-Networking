@@ -4,7 +4,7 @@ package com.arifinfrds.papblnetworking.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Example {
+public class WeatherResponse {
 
     @SerializedName("cod")
     @Expose

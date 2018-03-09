@@ -1,6 +1,6 @@
 package com.arifinfrds.papblnetworking.service;
 
-import com.arifinfrds.papblnetworking.model.Example;
+import com.arifinfrds.papblnetworking.model.WeatherResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -16,7 +16,7 @@ public interface WeatherService {
 
     // appid=3805dd8eda02a9e61920a575cd81b269&id=1636722
     @GET("forecast?")
-    Call<Example> getWeather(@Query("appid") String appId, @Query("id") String cityId);
+    Call<WeatherResponse> getWeather(@Query("appid") String appId, @Query("id") String cityId);
 
 
 }
