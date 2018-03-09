@@ -12,11 +12,10 @@ import retrofit2.http.Query;
 
 public interface WeatherService {
 
-    String ID_KOTA_MALANG = "1636722";
 
-    // appid=3805dd8eda02a9e61920a575cd81b269&id=1636722
+    // appid=3805dd8eda02a9e61920a575cd81b269
     @GET("forecast?")
-    Call<WeatherResponse> getWeather(@Query("appid") String appId, @Query("id") String cityId);
+    Call<WeatherResponse> fetchWeather(@Query("appid") String appId, @Query("q") String cityNameAndCode);
 
 
 }
