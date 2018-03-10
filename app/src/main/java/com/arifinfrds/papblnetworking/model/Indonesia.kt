@@ -7,7 +7,7 @@ class Indonesia {
 
     companion object {
 
-        fun getBigCityList(): ArrayList<String> {
+        fun getBigCities(): ArrayList<String> {
             return arrayListOf(
                     "Jakarta",
                     "Surabaya",
