@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/thumbnailImageView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contentImageView" />
+
+            <TextView
+                android:id="@+id/subtitleTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="0dp"
+                android:text="@string/app_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintEnd_toStartOf="@+id/timeTextView"
+                app:layout_constraintStart_toEndOf="@+id/thumbnailImageView"
+                app:layout_constraintTop_toTopOf="@+id/thumbnailImageView" />
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/lorem_ipsum_small"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintEnd_toEndOf="@+id/timeTextView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/subtitleTextView"
+                app:layout_constraintTop_toBottomOf="@+id/subtitleTextView" />
+
+            <TextView
+                android:id="@+id/timeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="15 jam"
+                app:layout_constraintBottom_toBottomOf="@+id/subtitleTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/subtitleTextView" />
+
+            <View
+                android:id="@+id/blankView"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                app:layout_constraintLeft_toLeftOf="@id/thumbnailImageView"
+                app:layout_constraintRight_toRightOf="@id/descriptionTextView"
+                app:layout_constraintTop_toBottomOf="@id/descriptionTextView" />
+
+            <ImageView
+                android:src="@color/colorAccent"
+                android:id="@+id/contentImageView"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:maxLines="1"
+                android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/md_white_1000"
+                app:layout_constraintBottom_toBottomOf="@+id/contentImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/contentImageView" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+</android.support.constraint.ConstraintLayout>

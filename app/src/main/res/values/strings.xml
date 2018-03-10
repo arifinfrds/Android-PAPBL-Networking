@@ -2,4 +2,7 @@
     <string name="app_name">PAPBLNetworking</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="title_activity_weather">Weather</string>
+
+    <string name="lorem_ipsum_small">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</string>
+
 </resources>
