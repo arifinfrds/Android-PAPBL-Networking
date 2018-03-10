@@ -8,6 +8,7 @@ import android.util.Log
 import com.arifinfrds.papblnetworking.R
 import com.arifinfrds.papblnetworking.extension.toast
 import com.arifinfrds.papblnetworking.model.Indonesia
+import com.arifinfrds.papblnetworking.model.WeatherList
 import com.arifinfrds.papblnetworking.model.WeatherResponse
 import com.arifinfrds.papblnetworking.service.RestClient
 import com.arifinfrds.papblnetworking.util.SpacesItemDecoration
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.content_weather.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.ArrayList
 
 class WeatherActivity : AppCompatActivity() {
 
@@ -36,15 +38,15 @@ class WeatherActivity : AppCompatActivity() {
         } else {
             toast("Kota Anda ada di database kami.")
             fetchWeather()
-            setupRecyclerView()
         }
 
     }
 
+
     // MARK: - Private Method's
-    private fun setupRecyclerView() {
+    private fun setupRecyclerView(weathers: ArrayList<WeatherList>) {
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        recyclerView.adapter = WeatherAdapter(cities, this)
+        recyclerView.adapter = WeatherAdapter(weathers, this)
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.space_between_card)
         recyclerView.addItemDecoration(SpacesItemDecoration(spacingInPixels))
@@ -62,6 +64,7 @@ class WeatherActivity : AppCompatActivity() {
     private fun fetchWeather() {
         RestClient.weatherService.fetchWeather(RestClient.APP_ID, "${cityName},ID")
                 .enqueue(object : Callback<WeatherResponse> {
+
                     override fun onFailure(call: Call<WeatherResponse>?, t: Throwable?) {
                         Log.d("TAG_RESPONSE", t?.localizedMessage)
                         t?.printStackTrace()
@@ -73,9 +76,16 @@ class WeatherActivity : AppCompatActivity() {
 
                         if (response!!.isSuccessful() && response?.body() != null) {
                             val weatherResponse = response?.body()
-                            Log.d("TAG_RESPONSE", "weatherResponse: " + weatherResponse?.cod)
+                            Log.d("TAG_RESPONSE", "weatherResponse.cod : " + weatherResponse?.cod)
+
+                            var weathers = java.util.ArrayList<WeatherList>()
+                            weatherResponse!!.list!!.forEach { item ->
+                                weathers.add(item)
+                            }
+                            setupRecyclerView(weathers)
 
                         } else if (response.errorBody() != null) {
+                            Log.d("TAG_RESPONSE", response.errorBody().toString())
                         }
                     }
                 })

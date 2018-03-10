@@ -9,13 +9,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.arifinfrds.papblnetworking.R
+import com.arifinfrds.papblnetworking.model.WeatherList
+import com.squareup.picasso.Picasso
+import java.text.DecimalFormat
+import java.util.ArrayList
 
 /**
  * Created by arifinfrds on 3/10/18.
  */
 class WeatherAdapter
 (
-        val weathers: ArrayList<String>,
+        val items: ArrayList<WeatherList>,
         val context: Context
 
 ) : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
@@ -28,26 +32,29 @@ class WeatherAdapter
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        var weather = weathers[position]
+        var item = items[position]
 
+        val iconURL = "http://openweathermap.org/img/w/${item.weather[0].icon}.png"
+        Picasso.get().load(iconURL).into(holder?.thumbnailImageView);
 
+        holder?.titleTextView?.setText(item.weather[0].main)
+        holder?.subtitleTextView?.setText(item.weather[0].description)
 
-//        Glide.with(context).load(post.imageURL).into(holder!!.contentImageView)
-//
-//        holder?.titleTextView?.setText(post.title)
-//        holder?.subtitleTextView?.setText(post.subtitle)
-//        holder?.descriptionTextView?.setText(post.description)
-//        holder?.timeTextView?.setText(post.time)
-
-        // cara lebih singkat lagi
-        holder?.cardView?.setOnClickListener {
-            // postListener.onPostClick(post)
-        }
+        holder?.descriptionTextView?.setText("Humidity : ${item.main.humidity} | Temperature : ${getCelcius(item.main.temp)} degree Celcius.")
+        holder?.timeTextView?.setText(item.dtTxt)
 
     }
 
     override fun getItemCount(): Int {
-        return weathers.count()
+        return items.count()
+    }
+
+    fun getCelcius(kelvin: Double): Double {
+        val df = DecimalFormat("#.##")
+
+        val result = kelvin - 273.15
+        val degreeString = df.format(result)
+        return degreeString.toDouble()
     }
 
 
@@ -55,20 +62,20 @@ class WeatherAdapter
 
         // MARK: - Public Properties
         val cardView: CardView
-        val contentImageView: ImageView
         val titleTextView: TextView
         val subtitleTextView: TextView
         val descriptionTextView: TextView
         val timeTextView: TextView
+        val thumbnailImageView: ImageView
 
         // MARK: - Initialization
         init {
             cardView = itemView?.findViewById(R.id.cardView) as CardView
-            contentImageView = itemView?.findViewById(R.id.contentImageView) as ImageView
             titleTextView = itemView?.findViewById(R.id.titleTextView) as TextView
             subtitleTextView = itemView?.findViewById(R.id.subtitleTextView) as TextView
             descriptionTextView = itemView?.findViewById(R.id.descriptionTextView) as TextView
             timeTextView = itemView?.findViewById(R.id.timeTextView) as TextView
+            thumbnailImageView = itemView?.findViewById(R.id.thumbnailImageView)
 
         }
     }
