@@ -20,7 +20,7 @@ public class WeatherResponse {
 
     @SerializedName("list")
     @Expose
-    private java.util.List<com.arifinfrds.papblnetworking.model.List> list = null;
+    private java.util.List<WeatherList> list = null;
 
     @SerializedName("city")
     @Expose
@@ -50,11 +50,11 @@ public class WeatherResponse {
         this.cnt = cnt;
     }
 
-    public java.util.List<com.arifinfrds.papblnetworking.model.List> getList() {
+    public java.util.List<WeatherList> getList() {
         return list;
     }
 
-    public void setList(java.util.List<com.arifinfrds.papblnetworking.model.List> list) {
+    public void setList(java.util.List<WeatherList> list) {
         this.list = list;
     }
 
