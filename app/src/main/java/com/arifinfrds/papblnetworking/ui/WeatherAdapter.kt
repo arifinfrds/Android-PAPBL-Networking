@@ -1,6 +1,5 @@
 package com.arifinfrds.papblnetworking.ui
 
-import android.content.Context
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.arifinfrds.papblnetworking.R
+import com.arifinfrds.papblnetworking.model.City
+import com.arifinfrds.papblnetworking.model.WeatherCondition
 import com.arifinfrds.papblnetworking.model.WeatherList
 import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
@@ -20,7 +21,7 @@ import java.util.ArrayList
 class WeatherAdapter
 (
         val items: ArrayList<WeatherList>,
-        val context: Context
+        val city: City
 
 ) : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
 
@@ -37,10 +38,12 @@ class WeatherAdapter
         val iconURL = "http://openweathermap.org/img/w/${item.weather[0].icon}.png"
         Picasso.get().load(iconURL).into(holder?.thumbnailImageView);
 
+        Picasso.get().load(WeatherCondition.getWeatherIconUrl(item.weather[0].icon)).into(holder?.contentImageView)
+
         holder?.titleTextView?.setText(item.weather[0].main)
         holder?.subtitleTextView?.setText(item.weather[0].description)
 
-        holder?.descriptionTextView?.setText("Humidity : ${item.main.humidity} | Temperature : ${getCelcius(item.main.temp)} degree Celcius.")
+        holder?.descriptionTextView?.setText("it's ${getCelcius(item.main.temp)} degree Celcius in ${city.name}")
         holder?.timeTextView?.setText(item.dtTxt)
 
     }
@@ -62,6 +65,7 @@ class WeatherAdapter
 
         // MARK: - Public Properties
         val cardView: CardView
+        val contentImageView: ImageView
         val titleTextView: TextView
         val subtitleTextView: TextView
         val descriptionTextView: TextView
@@ -71,6 +75,7 @@ class WeatherAdapter
         // MARK: - Initialization
         init {
             cardView = itemView?.findViewById(R.id.cardView) as CardView
+            contentImageView = itemView?.findViewById(R.id.contentImageView)
             titleTextView = itemView?.findViewById(R.id.titleTextView) as TextView
             subtitleTextView = itemView?.findViewById(R.id.subtitleTextView) as TextView
             descriptionTextView = itemView?.findViewById(R.id.descriptionTextView) as TextView

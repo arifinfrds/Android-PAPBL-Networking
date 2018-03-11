@@ -28,11 +28,12 @@
                 android:id="@+id/thumbnailImageView"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:src="@mipmap/ic_launcher"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/contentImageView" />
 
             <TextView
                 android:id="@+id/subtitleTextView"
@@ -81,19 +82,30 @@
                 app:layout_constraintRight_toRightOf="@id/descriptionTextView"
                 app:layout_constraintTop_toBottomOf="@id/descriptionTextView" />
 
+            <ImageView
+                android:src="@color/colorAccent"
+                android:id="@+id/contentImageView"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/titleTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:maxLines="1"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/md_white_1000"
+                app:layout_constraintBottom_toBottomOf="@+id/contentImageView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="@+id/contentImageView" />
 
         </android.support.constraint.ConstraintLayout>
 
